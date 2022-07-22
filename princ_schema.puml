@@ -1,0 +1,23 @@
+@startuml reversi diagram
+class Board {
+-board_size
+-board
+-next_player
+
++place_piece(x,y)
++count_pieces(player)
+}
+class BoardView {
++draw_board()
++receive_move()
+}
+
+class GameLogic {
++draw_board()
++receive_move()
+}
+GameLogic  --*  Board
+GameLogic  --  Board
+GameLogic  --  BoardView
+BoardView  --  Board
+@enduml
