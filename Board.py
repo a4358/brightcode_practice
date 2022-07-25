@@ -23,6 +23,8 @@ class Board:
             self.nextplayer *= -1
         else:
             raise ValueError(x,y)
+    def skip_move(self):
+        self.nextplayer *= -1
 
     def list_affected(self,coords,player): 
         #this method returns all pieces that would have to be flipped in case of a move by (player) at (coords)
