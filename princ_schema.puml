@@ -3,20 +3,24 @@ class Board {
 -board_size
 -board
 -next_player
-
-+place_piece(x,y)
-+count_pieces(player)
++return_board()
++make_move(x,y)
++list_affected(x,y,player)
++moves_exist()
 }
 class BoardView {
 +draw_board()
-+receive_move()
++prompt_move()
++invalid_move_comment()
++end_screen()
 }
 
+
 class GameLogic {
-+draw_board()
-+receive_move()
++initialise(size)
++begin_game()
 }
-GameLogic  --*  Board
+GameLogic  *--  Board
 GameLogic  --  Board
 GameLogic  --  BoardView
 BoardView  --  Board
