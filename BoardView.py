@@ -36,8 +36,21 @@ class BoardView(ABC):
         try:
             xy = in_line.split()
             if (len(xy) == 2 and int(xy[0]) > 0 and int(xy[0]) <= board.size and int(xy[1]) > 0 and int(xy[1]) <= board.size):
-                return (int(xy[0]),int(xy[1]))
+                return (int(xy[0])-1,int(xy[1])-1)
             else: raise ValueError
         except:
             print ("invalid input, try again please")
             return (BoardView.prompt_move(board))
+    
+    def invalid_move_comment():
+        print ("this move is not allowed by the game rules, please try something else")
+    
+    def end_screen(scores):
+        symbol_black = "X"
+        symbol_white = "O"
+        if scores[0] > scores [1]:
+            print (f"black player ({symbol_black}) won with the score of {scores[0]} to {scores[1]}")
+        elif scores[0] < scores [1]:
+            print (f"white player ({symbol_white}) won with the score of {scores[1]} to {scores[0]}")
+        else:
+            print (f"a draw happened! both players scored {scores[0]} points.")
