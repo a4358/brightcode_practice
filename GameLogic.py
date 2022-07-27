@@ -1,5 +1,7 @@
 from Board import Board
 from BoardView import BoardView
+from Player import Player
+from AiPlayerEasy import AiPlayerEasy
 class GameLogic:
     def __init__(self) -> None:
         pass
@@ -7,6 +9,15 @@ class GameLogic:
         if (type(size)!= int or size <=0):
             raise ValueError
         self.field = Board(size)
+        self.player_white = Player(1)
+        self.player_black = Player(-1)
+    
+    def initialise_ai(self,size):
+        if (type(size)!= int or size <=0):
+            raise ValueError
+        self.field = Board(size)
+        self.player_white = AiPlayerEasy(1)
+        self.player_black = Player(-1)
 
     def begin_game(self):
 
@@ -17,7 +28,10 @@ class GameLogic:
             if (self.field.moves_exist()):
                 skipflag = 0
                 try:
-                    self.field.make_move(BoardView.prompt_move(self.field))
+                    if self.field.nextplayer < 0:
+                        self.field.make_move(self.player_black.prompt_move(self.field))
+                    else:
+                        self.field.make_move(self.player_white.prompt_move(self.field))
                 except: 
                     BoardView.invalid_move_comment()
                     continue

@@ -10,18 +10,28 @@ class Board {
 }
 class BoardView {
 +draw_board()
-+prompt_move()
 +invalid_move_comment()
 +end_screen()
 }
 
+class Player {
+-player_type
++prompt_move()
+}
+class AiPlayerEasy {
++prompt_move()
+}
 
 class GameLogic {
 +initialise(size)
++initialise_ai(size)
 +begin_game()
 }
 GameLogic  *--  Board
 GameLogic  --  Board
 GameLogic  --  BoardView
 BoardView  --  Board
+Player <|-- AiPlayerEasy
+GameLogic  *-- Player
+GameLogic  *-- AiPlayerEasy
 @enduml
