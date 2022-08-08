@@ -7,7 +7,15 @@ class AiPlayerComplicated(Player):
         super().__init__(playertype)
     
     def prompt_move(self,board:Board):
-        depth = 5
+        """decides which move to make in the current situation
+
+        Args:
+            board (Board): current game state
+
+        Returns:
+            Tuple: coordinates of the piece placed
+        """
+        depth = 5  #decides how many layers in to look
         max_utility = -2000
         for x in range (board.size):
                 for y in range (board.size):
@@ -25,6 +33,15 @@ class AiPlayerComplicated(Player):
         return (int(bestmove[0]), int(bestmove[1]))
     
     def minimax(self,hyp_board:Board, is_max_players_turn,depth) -> int:
+        """recursive function to find the maximum utility that can result from a board state
+
+        Args:
+            hyp_board (Board): the hypothetical board the current layer is considering for utility
+            is_max_players_turn (bool): whether the turn on this layer is made by the for or the optimizing player
+            depth (int): how many layers in should the algorithm look
+        Returns:
+            int: predicted utility resulting from the move (not absolute due to likely early cutoff, assumes opponent plays naively)
+        """
         if not (hyp_board.moves_exist()):
             result_board:Board = deepcopy(hyp_board)
             result_board.skip_move()

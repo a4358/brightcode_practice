@@ -13,6 +13,14 @@ class Board:
         return self.board
     
     def make_move(self,coords):
+        """makes a move, adding a piece and switching the affected pieces
+
+        Args:
+            coords (Tuple): two int values for coordinates on the board
+
+        Raises:
+            ValueError: raised if the move is illegal (cell occupied or no affectected pieces)
+        """
         x, y = coords
         affected = Board.list_affected(self,coords,self.nextplayer)
         if (self.board[x][y] == 0) and affected:
@@ -23,11 +31,23 @@ class Board:
             self.nextplayer *= -1
         else:
             raise ValueError(x,y)
+
+
     def skip_move(self):
+        """skips the current player's move
+        """
         self.nextplayer *= -1
 
-    def list_affected(self,coords,player): 
-        #this method returns all pieces that would have to be flipped in case of a move by (player) at (coords)
+    def list_affected(self,coords,player):
+        """returns all pieces that would have to be flipped in case of a move by (player) at (coords)
+        Args:
+            coords (Tuple): two int values for coordinates on the board
+            player (int): 1 or -1, shows which playe makes the move
+
+        Returns:
+            set: set of tuples with affected pieces' coordinates
+        """
+        
         x, y = coords
         player = int(player)
         affected = set()
@@ -173,6 +193,11 @@ class Board:
         return affected
     
     def moves_exist(self):
+        """checks if there are any moves available to the current player
+
+        Returns:
+            boolean: True if there are valid moves, False otherwise
+        """
         for x in range (self.size):
             for y in range (self.size):
                 if self.board[x][y] == 0:
@@ -181,6 +206,17 @@ class Board:
         return False
     
     def report_pieces(self,player=0):
+        """reports quantity of pieces owned by each player, or the numerical advantage if given a player indicator as a param
+
+        Args:
+            player (int, optional): 1 or -1 to count the advantage of that player. Defaults to 0.
+
+        Returns:
+            Tuple: count of black and white pieces
+            or
+            int: numerical advantage of the requested player
+
+        """
         black = 0
         white = 0
         for x in range (self.size):
@@ -195,6 +231,14 @@ class Board:
             return ((white - black)*player)
     
     def evaluation(self,player):
+        """returns a rating of how good the board situation is for the asking player
+
+        Args:
+            player (int): 1 or -1 for white or black
+
+        Returns:
+            int: rating of the board for the player
+        """
         utility = 0
         for x in range (self.size):
             for y in range (self.size):

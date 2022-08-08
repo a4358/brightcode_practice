@@ -4,6 +4,14 @@ class AiPlayerEasy(Player):
         super().__init__(playertype)
     
     def prompt_move(self,board):
+        """decides which move to make in the current situation
+
+        Args:
+            board (Board): current game state
+
+        Returns:
+            Tuple: coordinates of the piece placed
+        """
         moves = dict()
         for x in range (board.size):
             for y in range (board.size):

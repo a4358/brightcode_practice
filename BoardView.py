@@ -5,6 +5,11 @@ class BoardView(ABC):
     
 
     def draw_board(board):
+        """displays the game board
+
+        Args:
+            board (Board): board to display
+        """
         symbol_black = "X"
         symbol_white = "O"
         header = "  x"
@@ -26,9 +31,17 @@ class BoardView(ABC):
             print(spaceline)
 
     def invalid_move_comment():
+        """tells the player that their move has been rejected by the game rules
+        """
         print ("this move is not allowed by the game rules, please try something else")
     
     def end_screen(scores,board):
+        """diplays a final tally of the pieces and the winner
+
+        Args:
+            scores (Tuple): piece counts, black first
+            board (Board): the board the game took place on (not used in current iteration)
+        """
         symbol_black = "X"
         symbol_white = "O"
         if scores[0] > scores [1]:

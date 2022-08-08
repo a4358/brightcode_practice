@@ -1,6 +1,11 @@
 class Player:
     currentplayer = -1
     def __init__(self, playertype:int) -> None:
+        """base class for any player entity
+
+        Args:
+            playertype (int): 1 for white, -1 for black
+        """
         if  playertype < 0 :
             self.symbol = "X"
         if  playertype > 0 :
@@ -9,7 +14,14 @@ class Player:
 
 
     def prompt_move(self,board):
-        
+        """gets a set of format-verified coordinates for the current board from the keyboard
+
+        Args:
+            board (Board): board for which a move is being made
+
+        Returns:
+            Tuple: coordinates of the move
+        """
         
         if self.playertype < 0:
             in_line = input(f"Black player's turn ({self.symbol}): enter coloumn and row of target cell, separated by a space  \n")

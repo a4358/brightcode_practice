@@ -6,7 +6,15 @@ from AiPlayerComplicated import AiPlayerComplicated
 class GameLogic:
     def __init__(self) -> None:
         pass
-    def initialise(self,size):
+    def initialise_pvp(self,size):
+        """sets up the board for a two-player game
+
+        Args:
+            size (int): size of the board desired
+
+        Raises:
+            ValueError: rasied if size is not supported
+        """
         if (type(size)!= int or size <=0):
             raise ValueError
         self.game_field = Board(size)
@@ -14,6 +22,15 @@ class GameLogic:
         self.player_black = Player(-1)
     
     def initialise_ai(self,size):
+        """sets up the board for a one-player game against a simple ai
+           the ai plays as white
+
+        Args:
+            size (int): size of the board desired
+
+        Raises:
+            ValueError: rasied if size is not supported
+        """
         if (type(size)!= int or size <=0):
             raise ValueError
         self.game_field = Board(size)
@@ -21,6 +38,15 @@ class GameLogic:
         self.player_black = Player(-1)
     
     def initialise_ai_minimax(self,size):
+        """sets up the board for a one-player game against an ai based on the minimax algorithm
+           the ai plays as white
+
+        Args:
+            size (int): size of the board desired
+
+        Raises:
+            ValueError: rasied if size is not supported
+        """
         if (type(size)!= int or size <=0):
             raise ValueError
         self.game_field = Board(size)
@@ -29,6 +55,8 @@ class GameLogic:
 
 
     def begin_game(self):
+        """initiates the game and runs it's core loop
+        """
 
         BoardView.draw_board(self.game_field)
 
