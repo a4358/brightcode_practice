@@ -97,7 +97,7 @@ class Board:
             if valid:
                 affected.update(potential_victims)
 
-        #check diagonals (todo)
+        #check diagonals
         #first the \ diagonal (x any y are both increasing/decreasing)
         #checking to the up/left
         node_ldiag = False
@@ -180,7 +180,7 @@ class Board:
                         return True
         return False
     
-    def report_pieces(self):
+    def report_pieces(self,player=0):
         black = 0
         white = 0
         for x in range (self.size):
@@ -189,8 +189,24 @@ class Board:
                     black += 1
                 elif self.board[x][y] == 1:
                     white += 1
-        return (black, white)
-
-
-        
+        if player == 0:
+            return (black, white)
+        else: 
+            return ((white - black)*player)
     
+    def evaluation(self,player):
+        utility = 0
+        for x in range (self.size):
+            for y in range (self.size):
+                if self.board[x][y] == player:
+                    utility += 2
+                elif self.board[x][y] == player*(-1):
+                    utility -= 2
+        # for x in [1,self.size-1]:            #additional value to corner spots
+        #     for y in [1,self.size-1]:
+        #         if self.board[x][y] == player:
+        #             utility += 1
+        #         elif self.board[x][y] == player*(-1):
+        #             utility -= 1
+        return utility
+
