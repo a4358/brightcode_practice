@@ -246,11 +246,11 @@ class Board:
                     utility += 2
                 elif self.board[x][y] == player*(-1):
                     utility -= 2
-        # for x in [1,self.size-1]:            #additional value to corner spots
-        #     for y in [1,self.size-1]:
-        #         if self.board[x][y] == player:
-        #             utility += 1
-        #         elif self.board[x][y] == player*(-1):
-        #             utility -= 1
+        for x in [1,self.size-1]:            #additional value to corner spots
+            for y in [1,self.size-1]:
+                if self.board[x][y] == player:
+                    utility += 1
+                elif self.board[x][y] == player*(-1):
+                    utility -= 1
         return utility
 
