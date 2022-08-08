@@ -7,6 +7,7 @@ class Board {
 +make_move(x,y)
 +list_affected(x,y,player)
 +moves_exist()
++evaluation(player)
 }
 class BoardView {
 +draw_board()
@@ -22,6 +23,11 @@ class AiPlayerEasy {
 +prompt_move()
 }
 
+class AiPlayerComplicated {
++prompt_move()
+-minimax()
+}
+
 class GameLogic {
 +initialise(size)
 +initialise_ai(size)
@@ -32,6 +38,8 @@ GameLogic  --  Board
 GameLogic  --  BoardView
 BoardView  --  Board
 Player <|-- AiPlayerEasy
+Player <|-- AiPlayerComplicated
+AiPlayerComplicated  --  Board
 GameLogic  *-- Player
 GameLogic  *-- AiPlayerEasy
 @enduml
