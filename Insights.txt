@@ -1,0 +1,12 @@
+This project was done in a sort of haphazard way, for which i apologize. 
+The ugliest part of the code is undoubtedly the algortihm meant for searching for pieces affected by a move (Board.list_affected),
+which was implemented before it was discussed in class and the sunk cost fallacy prevented me from rewriting it cleanly until
+there was no more time left. It does work however, and i have supplemented it with comments and a unit test to make it somewhat bearable.
+Docstrings have proved very useful when doealing with more complex functions that take and give tuples as params
+Git allowed me to not worry about losing the code i have written, and also faciliated organisation and 
+allowed to easliy work from multiple devices.
+I did not take full advantage of the unit tests until the very end (they came in handy once), but that is mostly due to figuring out most of the architecture
+and doing a lot of work before we had them in class.
+Not making a player class from the very begininng did waste some time when implementing different kinds of ai, but was not a terrible problem.
+
+Overall i am happy with the project, but regretful that procrastination (my worst enemy) and other delays did not leave enough time to implement a proper GUI.
