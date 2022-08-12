@@ -60,10 +60,10 @@ class GameLogic:
 
         BoardView.draw_board(self.game_field)
 
-        skipflag = 0
-        while (skipflag < 2):
+        skipcount = 0
+        while (skipcount < 2):
             if (self.game_field.moves_exist()):
-                skipflag = 0
+                skipcount = 0
                 try:
                     if self.game_field.nextplayer < 0:
                         self.game_field.make_move(self.player_black.prompt_move(self.game_field))
@@ -73,8 +73,9 @@ class GameLogic:
                     BoardView.invalid_move_comment()
                     continue
                 BoardView.draw_board(self.game_field)
+                
             else:
                 self.game_field.skip_move()
-                skipflag += 1
+                skipcount += 1
 
         BoardView.end_screen(self.game_field.report_pieces(),self.game_field)
