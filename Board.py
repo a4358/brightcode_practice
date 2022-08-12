@@ -244,26 +244,24 @@ class Board:
                     utility += 2
                 elif self.board[x][y] == player*(-1):
                     utility -= 2
-        for x in [1, self.size-1]:  # additional value to corner spots
+        for x in range(self.size): # additional value to corner spots and sides
             for y in [1, self.size-1]:
                 if self.board[x][y] == player:
                     utility += 1
                 elif self.board[x][y] == player*(-1):
                     utility -= 1
-        return utility
+        
+        for y in range(self.size): # additional value to corner spots and sides
+            for x in [1, self.size-1]:
+                if self.board[x][y] == player:
+                    utility += 1
+                elif self.board[x][y] == player*(-1):
+                    utility -= 1
 
-startboard=Board(4)        
-print(startboard.list_affected((1,0), -1))
-print(startboard.list_affected((0,1), -1))
-print(startboard.list_affected((2,3), -1))
-print(startboard.list_affected((3,2), -1))
-startboard.make_move((1,0))
-print(startboard.list_affected((0,0), 1))
-startboard=Board(4)
-startboard.make_move((2,3))
-print(startboard.list_affected((3,3), 1))
-startboard=Board(4)
-startboard.board=[[0, 0, 0, -1], [0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]
-print(startboard.list_affected((3,0), -1))
-startboard.board=[[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0], [-1, 0, 0, 0]]
-print(startboard.list_affected((0,3), -1))
+        # for x in [1, self.size-1]:  # additional value to corner spots
+        #     for y in [1, self.size-1]:
+        #         if self.board[x][y] == player:
+        #             utility += 1
+        #         elif self.board[x][y] == player*(-1):
+        #             utility -= 1
+        return utility
