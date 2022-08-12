@@ -1,4 +1,5 @@
 from abc import ABC
+from datetime import datetime
 
 
 class BoardView(ABC):
@@ -45,8 +46,15 @@ class BoardView(ABC):
         symbol_black = "X"
         symbol_white = "O"
         if scores[0] > scores [1]:
-            print (f"black player ({symbol_black}) won with the score of {scores[0]} to {scores[1]}")
+            ret = (f"black player ({symbol_black}) won with the score of {scores[0]} to {scores[1]}")
         elif scores[0] < scores [1]:
-            print (f"white player ({symbol_white}) won with the score of {scores[1]} to {scores[0]}")
+            ret = (f"white player ({symbol_white}) won with the score of {scores[1]} to {scores[0]}")
         else:
-            print (f"a draw happened! both players scored {scores[0]} points.")
+            ret = (f"a draw happened! both players scored {scores[0]} points.")
+        curr_time = datetime.now().strftime("%d.%m.%Y, %H:%M:%S")
+        filename = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
+        filename = f"{filename}.txt"
+        print(f"at {curr_time}, {ret}")
+        with open(filename,"w") as f:
+            f.write(f"at {curr_time}, {ret}")
+        
